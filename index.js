@@ -1,6 +1,6 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
-const date = '2020-09-14'
+const date = '2020-09-21'
 function getMatch (d) {
   axios.get('https://www.iuliao.com/live?issue=' + d).then(async res => {
     const $ = cheerio.load(res.data)
@@ -14,6 +14,7 @@ function getMatch (d) {
         id: dom('tr').attr('data-mid'),
         hs: dom('.score .home').text(),
         as: dom('.score .away').text(),
+        time: dom('.mtime').text(),
       })
     })
     let l = []
